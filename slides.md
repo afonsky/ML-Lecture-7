@@ -34,7 +34,7 @@ hideInToc: true
 subtitle: Decision Trees
 date: 13/10/2025
 venue: HSE
-author: Alexey Boldyrev
+author: Alexey Boldyrev, Maksim Karpov
 ---
 
 <br>
