@@ -1,3 +1,7 @@
+---
+zoom: 0.97
+---
+
 # The Game of 20 Questions
 
 <div class="grid grid-cols-[5fr_4fr] gap-20">
@@ -15,7 +19,8 @@
 * Each question **splits** the space of possible answers
 * Good questions **maximize information** gained
 * This is **exactly** how decision trees work!
-
+* What is your favorite language game?
+  * Do you know ML-powered [Semantle](https://semantle.com/) game?
 </v-clicks>
 </div>
 <div>
