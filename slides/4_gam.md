@@ -1,10 +1,3 @@
----
-layout: center
----
-# Extra Materials
-
----
-
 # Generalized Additive Models (GAM)
 
 * Consider GAM: <br> $\mathbb{E} [Y_{N \times 1} | X_1, ..., X_p] = \alpha + f_1 (X_1) + ... + f_p (X_p)$

@@ -78,13 +78,13 @@ src: ./slides/2_trees.md
 ---
 
 ---
+src: ./slides/0_end.md
+---
+
+---
 src: ./slides/3_mars.md
 ---
 
 ---
 src: ./slides/4_gam.md
----
-
----
-src: ./slides/0_end.md
 ---

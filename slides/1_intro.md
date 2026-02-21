@@ -1,4 +1,49 @@
+# The Game of 20 Questions
+
+<div class="grid grid-cols-[5fr_4fr] gap-20">
+<div>
+
+<v-clicks depth="2">
+
+* Think of any object...
+* I'll ask you **yes/no** questions to guess it
+  * Is it alive? → **Yes**
+  * Is it an animal? → **Yes**
+  * Does it have 4 legs? → **No**
+  * Can it fly? → **Yes**
+  * Is it a parrot? → **Yes!** 🎉
+* Each question **splits** the space of possible answers
+* Good questions **maximize information** gained
+* This is **exactly** how decision trees work!
+
+</v-clicks>
+</div>
+<div>
+<v-click at="8">
+
+```mermaid {theme: 'neutral', scale: 0.75}
+graph TD
+A(All objects) -->|Alive?| B(Living things)
+A -->|Not alive| C(...)
+B -->|Animal?| D(Animals)
+B -->|Not animal| E(...)
+D -->|Flies?| F(Flying animals)
+D -->|Doesn't fly| G(...)
+F -->|Parrot?| H(🦜 Yes!)
+```
+</v-click>
+</div>
+</div>
+
+<!--
+Andrew Ng often motivates decision trees with this "20 questions" analogy — it's the most natural way humans understand hierarchical decision-making. The key insight: each question should maximally reduce our uncertainty.
+-->
+
+---
+
 # Decision Trees in Real Life
+
+<center>
 
 ```mermaid {theme: 'neutral', scale: 1.0}
 graph TD
@@ -6,6 +51,7 @@ B(A student wants to learn<br> about Decision Trees) --> C{Decision}
 C -->|True| D(Listen to this lecture)
 C -->|False| E(Hang out with buddies<br> at Jeffrey's)
 ```
+</center>
 
 ---
 
@@ -13,10 +59,10 @@ C -->|False| E(Hang out with buddies<br> at Jeffrey's)
 
 ### Engineering Flowchart
 <br>
-<div class="grid grid-cols-[5fr_8fr] gap-6">
+<div class="grid grid-cols-[5fr_8fr] gap-16">
 <div>
 
-```mermaid {securityLevel: 'loose', theme: 'neutral', scale: 1.0, flowchart: {'htmlLabels': true}}
+```mermaid {securityLevel: 'loose', theme: 'neutral', scale: 0.8, flowchart: {'htmlLabels': true}}
 graph TD
 
 A(Does it move?) -->|No| B(Should it?)
@@ -29,10 +75,10 @@ C -->|No| G("Duct Tape")
 </div>
 <div>
   <figure>
-    <img src="/WD-40_Duct_tape_Etsy.jpg" style="width: 500px; position: relative">
+    <img src="/WD-40_Duct_tape_Etsy.jpg" style="width: 300px; position: relative">
       <figcaption style="color:#b3b3b3ff; font-size: 11px; position: absolute;">Image source:<br>
     <a href="https://www.etsy.com/listing/1705553794/wd40-and-duck-tape-holder">https://etsy.com/listing/1705553794/wd40-and-duck-tape-holder</a><br><br>Meme source:<br>
-    <a href="https://www.reddit.com/r/funny/comments/vkqd3/the_engineers_flowchart/">https://reddit.com/r/funny/comments/vkqd3/the_engineers_flowchart/</a>
+    <a href="https://www.reddit.com/r/funny/comments/vkqd3/the_engineers_flowchart/">https://reddit.com/r/funny/comments/vkqd3/the_engineers_flowchart</a>
   </figcaption>
   </figure>
 </div>
@@ -47,7 +93,7 @@ C -->|No| G("Duct Tape")
 <br>
 <br>
   <figure>
-    <img src="/cats_dogs.jpg" style="width: 220px; position: relative">
+    <img src="/cats_dogs.jpg" style="width: 190px; position: relative">
     <figcaption style="color:#b3b3b3ff; font-size: 11px; position: absolute;"><br><br><br><br>Example source:<br>
     <a href="https://towardsdatascience.com/decision-tree-an-algorithm-that-works-like-the-human-brain-8bc0652f1fc6">https://towardsdatascience.com/<br>decision-tree-an-algorithm-that-works-like-the-human-brain-8bc0652f1fc6</a>
   </figcaption>
@@ -55,7 +101,7 @@ C -->|No| G("Duct Tape")
 </div>
 <div v-click>
   <figure>
-    <img src="/cats_dogs_2.jpg" style="width: 510px; position: relative; top: -90px; left: 100px;">
+    <img src="/cats_dogs_2.jpg" style="width: 490px; position: relative; top: -90px; left: 100px;">
   </figure>
 </div>
 </div>
@@ -83,22 +129,48 @@ C -->|No| G("Duct Tape")
 </div>
 
 ---
-zoom: 1.3
+zoom: 0.95
 ---
 
-# Decision Trees Motivation
+# Why Decision Trees?
+
+<div class="grid grid-cols-[6fr_4fr] gap-6">
+<div>
 
 <v-clicks depth="2">
 
-* Easily created, visualized, and interpreted
-* Highly intuitive
-	* Mimic the way our brains categorize
-* Handle both classification and regression
-* Find nonlinear patterns
-* Deals well with noisy or incomplete data
-* Expand logarithmically based on the number of observations
-* Let's understand how they work!
+* **Interpretable**: you can explain every prediction
+  * "The model predicts X **because** feature A > 5 and feature B = 'yes'"
+  * Try doing that with a neural network! 😅
+* **Intuitive**: mimic the way our brains categorize
+* Handle both **classification** and **regression**
+* Capture **nonlinear** patterns and **interactions** between features
+  * No need to manually engineer polynomial features
+* **No feature scaling** needed
+  * unlike linear models, kNN
+* Handle **missing data** naturally
+* Fast to train and predict
+
 </v-clicks>
+</div>
+<div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<v-click>
+
+> *"The most important thing in machine learning is not the algorithm — it's understanding your data. Decision trees help you do both."*
+> <br>— paraphrasing Andrew Ng
+
+</v-click>
+</div>
+</div>
+
+<!--
+Sebastian Raschka emphasizes that decision trees are one of the few models where you can trace exactly why a prediction was made — crucial for domains like healthcare and finance. Andrew Ng highlights that interpretability is not just a nice-to-have but a requirement in many real-world applications.
+-->
 
 ---
 
@@ -212,6 +284,37 @@ style G fill:#5cb155,stroke:#333,stroke-width:4px
 * Final nodes are called<br> **Leaf Nodes** or **Leaves**
 </div>
 </div>
+
+---
+zoom: 1.1
+---
+
+# The Key Idea: Recursive Partitioning
+
+<v-clicks depth="2">
+
+* A decision tree **recursively splits** the feature space into regions
+* At each node, we ask: **"Which <span class="text-green-600">feature</span> and <span class="text-orange-600">threshold</span> best separates the data?"**
+* The algorithm:
+  1. Consider **all <span class="text-green-600">features</span>** and **all possible <span class="text-orange-600">thresholds</span>**
+  2. Pick the split that produces the **"purest"** child nodes
+  3. Repeat on each child node until a **stopping criterion** is met
+  4. Assign a prediction to each leaf (majority class or mean value)
+* This is a **greedy** algorithm — it makes the **locally optimal** choice at each step
+  * It does **not** guarantee the globally optimal tree
+  * But it works remarkably well in practice!
+
+</v-clicks>
+
+<v-click>
+
+> *The tree greedily asks: "What single question would best separate my data right now?"*
+
+</v-click>
+
+<!--
+Josh Starmer (StatQuest) explains this beautifully: at each step, the tree tries every possible split and picks the one that creates the most homogeneous groups. It's greedy — it doesn't look ahead to see if a "bad" split now might lead to a better tree later.
+-->
 
 ---
 
@@ -722,14 +825,16 @@ $$\Delta I_{\mathrm{node}} = I_{\mathrm{node}} - \Big(I_{\mathrm{left}}\frac{N_{
 # Impurity Measures
 
 ### There are 2 more popular impurity measures besides the Misclassification error:
-<div class="grid grid-cols-[3fr_4fr] gap-4">
+<div class="grid grid-cols-[3fr_3fr] gap-4">
 <div>
 
-* **Entropy**:
-  * $I_{\mathrm{node}} = - \sum\limits_{k=1}^K \hat{p}_{mk} \log \hat{p}_{mk}$
+* **Entropy** (used in ID3, C4.5):
+  * $I_{\mathrm{node}} = - \sum\limits_{k=1}^K \hat{p}_{mk} \log_2 \hat{p}_{mk}$
+  * Measures "surprise" — how unpredictable the node is
 
-* **Gini Impurity**:
-  * $I_{\mathrm{node}} = - \sum\limits_{k=1}^K \hat{p}_{mk} (1 - \hat{p}_{mk})$
+* **Gini Impurity** (used in CART, <br>scikit-learn default):
+  * $I_{\mathrm{node}} = \sum\limits_{k=1}^K \hat{p}_{mk} (1 - \hat{p}_{mk})$
+  * Probability of **misclassifying**<br> a randomly chosen sample
 </div>
 <div>
 <br>
@@ -743,21 +848,40 @@ $$\Delta I_{\mathrm{node}} = I_{\mathrm{node}} - \Big(I_{\mathrm{left}}\frac{N_{
 </div>
 </div>
 
+<!--
+Josh Starmer explains Gini very intuitively: imagine you pick a random sample from a node and randomly assign it a class based on the class distribution in that node. Gini impurity is the probability you'd be wrong. Perfect purity → Gini = 0.
+-->
+
 ---
-zoom: 1.2
+zoom: 1.0
 ---
 
-# Impurity Measures
+# Impurity Measures: Intuition
 
-### Misclassification error, Entropy and Gini Impurity are similar, except:
+### Think of it this way:
 
-* Entropy and the Gini are differentiable, and hence more amenable to numerical optimization
+<v-clicks depth="2">
 
-* Entropy and the Gini index are more sensitive to changes in the node probabilities than the misclassification rate
+* **Pure node** (all same class): Impurity = 0 ✅
+  * Node with (10 🔴, 0 🟢): Gini = $0 \times 1 + 1 \times 0 = 0$
+* **Maximally impure node** (50/50 split): Impurity is maximal ❌
+  * Node with (5 🔴, 5 🟢): Gini = $0.5 \times 0.5 + 0.5 \times 0.5 = 0.5$
+* All three measures (Misclassification, Entropy, Gini) agree on **pure** and **maximally impure** nodes
+* In practice, **Gini and Entropy** produce nearly identical trees
+  * Gini is slightly faster to compute (no logarithm)
+  * scikit-learn uses **Gini** by default
 
-* If we code each observation as $1$ for class $k$ and zero otherwise, the variance over the
-node of this $0-1$ response is $\hat{p}_{mk} (1 - \hat{p}_{mk})$. Summing over classes $k$ again
-gives the Gini index.
+</v-clicks>
+<br>
+<v-click>
+
+> *"Entropy and Gini index are more sensitive to changes in node probabilities than misclassification rate — prefer them for tree growing"*<br> — ISLP Ch. 8
+
+</v-click>
+
+<!--
+Sebastian Raschka notes that in practice, switching between Gini and Entropy rarely changes the resulting tree. The choice is far less important than proper tree depth / pruning. Focus your energy on hyperparameter tuning, not impurity metric selection.
+-->
 
 ---
 
@@ -798,7 +922,7 @@ gives the Gini index.
 </div>
 
 ---
-zoom: 1.1
+zoom: 0.95
 ---
 
 # Stopping Criteria
@@ -806,14 +930,26 @@ zoom: 1.1
 <br>
 
 ### Examples of stopping criteria:
-- Maximum depth of the tree
-- Minimum number of objects inside a leaf of the tree
-- Maximum number of leaves in the tree
-- Stopping if all observations in a node belong to the same class
+<v-clicks>
+
+- **Maximum depth** of the tree (`max_depth`)
+- **Minimum samples per leaf** — don't create leaves with too few observations (`min_samples_leaf`)
+- **Minimum samples to split** — require enough data to justify a split (`min_samples_split`)
+- **Maximum number of leaves** in the tree (`max_leaf_nodes`)
+- **Minimum impurity decrease** — stop if the split doesn't improve enough (`min_impurity_decrease`)
+- Stop if all observations in a node belong to the same class (naturally pure)
+
+</v-clicks>
 
 <br>
+<v-click>
 
-### Stopping criterion affect the quality of tree predictions
-  * Stopping criterion affect the depth of the decision tree
-    * Very deep trees are overfitted
-    * Shallow trees are underfitted
+### Stopping criteria control the **bias-variance tradeoff**:
+* Very deep trees → **overfit** (low bias, high variance)
+* Very shallow trees → **underfit** (high bias, low variance)
+
+</v-click>
+
+<!--
+Andrew Ng emphasizes: the first thing to try when your tree overfits is to limit max_depth. Start small (depth 3-5) and increase if needed. This is much more practical than post-hoc pruning.
+-->
